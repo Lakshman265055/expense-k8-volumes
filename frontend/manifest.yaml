@@ -1,48 +1,3 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: frontend
-#   namespace: expense
-#   labels:
-#     app: frontend
-#     tier: web
-#     project: expense
-# spec:
-#   replicas: 2
-#   selector:
-#     matchLabels:
-#       app: frontend
-#       tier: web
-#       project: expense
-#   template:
-#     metadata:
-#       labels:
-#         app: frontend
-#         tier: web
-#         project: expense
-#     spec:
-#       containers:
-#       - name: frontend
-#         image: lakshman045/frontend:v1
-# ---
-# kind: Service
-# apiVersion: v1
-# metadata:
-#   name: frontend
-#   namespace: expense
-# spec:
-#   type: LoadBalancer
-#   selector:
-#     app: frontend
-#     tier: web
-#     project: expense
-#   ports:
-#   - name: frontend-port
-#     protocol: TCP
-#     port: 80
-#     targetPort: 80
-
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -70,7 +25,10 @@ spec:
       - name: frontend
         image: lakshman045/frontend:v1
         ports:
-        - containerPort: 8080        # changed from 80 to 8080
+        - containerPort: 80
+        securityContext:
+          runAsUser: 0
+  
 ---
 kind: Service
 apiVersion: v1
@@ -86,5 +44,5 @@ spec:
   ports:
   - name: frontend-port
     protocol: TCP
-    port: 80                    # external LB port stays 80
-    targetPort: 8080            # internal pod port now matches containerPort
+    port: 80
+    targetPort: 80
