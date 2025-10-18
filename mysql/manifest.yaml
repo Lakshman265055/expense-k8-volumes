@@ -26,8 +26,8 @@ spec:
   tier: db
  ports:
   - protocol: TCP
-    port: 80 #service port
-    targetPort: 80 # container port it is optional
+    port: 3306 #service port
+    targetPort: 3306 # container port it is optional
 
 ---
 apiVersion: apps/v1
