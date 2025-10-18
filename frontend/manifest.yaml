@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: lakshman045/frontend:v1
+        image: lakshman045/frontend:v2
         ports:
         - containerPort: 80
         securityContext:
@@ -46,4 +46,3 @@ spec:
   - name: frontend-port
     protocol: TCP
     port: 80
-    targetPort: 8080
