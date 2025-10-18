@@ -21,13 +21,22 @@ spec:
         tier: web
         project: expense
     spec:
-      containers:
+     containers:
       - name: frontend
         image: lakshman045/frontend:v1
         ports:
-        - containerPort: 80
+         - containerPort: 80
         securityContext:
-          runAsUser: 0
+         runAsUser: 0
+        args: ["nginx", "-g", "daemon off;"]
+
+      # containers:
+      # - name: frontend
+      #   image: lakshman045/frontend:v1
+      #   ports:
+      #   - containerPort: 80
+      #   securityContext:
+      #     runAsUser: 0
   
 ---
 kind: Service
