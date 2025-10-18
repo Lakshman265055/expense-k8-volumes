@@ -50,6 +50,8 @@ spec:
        component: mysql
        tier: db
     spec:
+      securityContext:
+        fsGroup: 999 
       containers:
       - name: mysql
         image: lakshman045/mysql:v1
